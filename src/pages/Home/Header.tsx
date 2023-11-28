@@ -52,11 +52,12 @@ const Header = () => {
       align: "center",
       containScroll: "trimSnaps",
       slidesToScroll: 1,
-      loop: true,
       duration: 100,
     },
     [
-      WheelGesturesPlugin(),
+      WheelGesturesPlugin({
+        target: document.body,
+      }),
       Autoplay({
         delay: 6000,
       }),
@@ -65,10 +66,49 @@ const Header = () => {
 
   useEffect(() => {
     if (!emblaApi) return;
-    emblaApi.reInit();
-    emblaApi.on("select", () => {
+
+    const selectHandler = () => {
       setActiveSlide(emblaApi.selectedScrollSnap());
-    });
+
+      const isLastSlide =
+        emblaApi.selectedScrollSnap() === carouselItems.length - 1;
+
+      if (isLastSlide) {
+        emblaApi.plugins()?.wheelGestures?.destroy();
+      }
+    };
+    emblaApi.on("select", selectHandler);
+
+    const scrollHandler = () => {
+      if (window.scrollY > 0) {
+        emblaApi.plugins()?.wheelGestures?.destroy();
+      } else {
+        emblaApi.reInit(
+          {
+            axis: "y",
+            align: "center",
+            containScroll: "trimSnaps",
+            slidesToScroll: 1,
+            duration: 100,
+          },
+          [
+            WheelGesturesPlugin({
+              target: document.body,
+            }),
+            Autoplay({
+              delay: 6000,
+            }),
+          ],
+        );
+      }
+    };
+
+    window.addEventListener("scroll", scrollHandler);
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+      emblaApi.off("select", selectHandler);
+    };
   }, [emblaApi]);
 
   const onSelect = (index: number) => {
