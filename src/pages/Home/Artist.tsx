@@ -28,7 +28,7 @@ const artists = [
   },
 ];
 
-const ArtistSlide = ({ name, title, img, quote }) => {
+const ArtistSlide = ({ name, title, img, quote }: never) => {
   return (
     <div className="flex flex-1 items-stretch gap-[40px] flex-shrink-0">
       <div className="w-[360px] h-[406px] flex-shrink-0 rounded-2xl overflow-hidden">
