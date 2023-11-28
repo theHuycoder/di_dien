@@ -97,12 +97,12 @@ const Header = () => {
                   className={`${styles.slide} embla__slide relative`}
                 >
                   <img
-                    className="absolute max-w-[759px] top-[200px] left-[50%] right-0 z-10 -translate-x-1/2"
+                    className="absolute max-w-[759px] top-1/2 left-[50%] right-0 z-10 -translate-x-1/2 -translate-y-1/2"
                     src={item.img}
                     alt={item.title}
                   />
                   <img
-                    className="absolute max-w-[759px] top-[200px] left-[50%] right-0 z-0 -translate-x-1/2"
+                    className="absolute max-w-[759px] top-1/2 left-[50%] right-0 z-0 -translate-x-1/2 -translate-y-1/2"
                     src={item.bgImg}
                     alt=""
                   />
