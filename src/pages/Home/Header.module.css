@@ -6,5 +6,9 @@
 }
 
 .slide-container {
-  height: calc(100vh - 180px);
+  height: calc(100vh);
+}
+
+.embla-viewport {
+  height: 100vh;
 }

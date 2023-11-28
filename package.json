@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "embla-carousel-autoplay": "^8.0.0-rc15",
     "embla-carousel-react": "^8.0.0-rc14",
     "embla-carousel-wheel-gestures": "^8.0.0-rc05",
     "react": "^18.2.0",
