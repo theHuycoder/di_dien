@@ -57,7 +57,6 @@ const Header = () => {
       align: "center",
       containScroll: "trimSnaps",
       slidesToScroll: 1,
-      duration: 100,
     },
     [
       WheelGesturesPlugin({
