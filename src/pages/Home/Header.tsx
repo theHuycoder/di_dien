@@ -74,7 +74,13 @@ const Header = () => {
       const isLastSlide =
         emblaApi.selectedScrollSnap() === carouselItems.length - 1;
 
-      if (isLastSlide) {
+      const isScrollingUp = emblaApi.scrollProgress() < 0.5;
+      const isScrollingDown = emblaApi.scrollProgress() > 0.5;
+      if (isLastSlide && isScrollingDown) {
+        emblaApi.plugins()?.wheelGestures?.destroy();
+      }
+
+      if (isLastSlide && isScrollingUp) {
         emblaApi.plugins()?.wheelGestures?.destroy();
       }
     };
