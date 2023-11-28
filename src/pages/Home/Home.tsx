@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Arts from "@/pages/Home/Arts.tsx";
 import Artist from "@/pages/Home/Artist.tsx";
 import styles from "./Home.module.css";
+import Footer from "@/pages/Home/Footer.tsx";
+import Contact from "@/pages/Home/Contact.tsx";
 
 const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,7 +49,12 @@ const Home = () => {
       <section className="relative mb-[100px]">
         <Artist />
       </section>
-      <section className={styles.contact}></section>
+      <section className={styles.contact}>
+        <Contact />
+      </section>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };
