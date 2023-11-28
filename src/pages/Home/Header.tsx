@@ -14,6 +14,9 @@ import NavTextView3 from "/home/nav-text-view-3.svg";
 import View1Number from "/home/view-1-numb.svg";
 import View2Number from "/home/view-2-numb.svg";
 import View3Number from "/home/view-3-numb.svg";
+import View1BigTitle from "/home/view-1-big-title.svg";
+import View2BigTitle from "/home/view-2-big-title.svg";
+import View3BigTitle from "/home/view-3-big-title.svg";
 import { useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -23,6 +26,7 @@ const carouselItems = [
     title: "Góc nhìn",
     img: View1,
     bgImg: BgView1,
+    bigTitleImg: View1BigTitle,
     navTextImg: NavTextView1,
     numberImg: View1Number,
   },
@@ -31,6 +35,7 @@ const carouselItems = [
     title: "Hình tượng",
     img: View2,
     bgImg: BgView2,
+    bigTitleImg: View2BigTitle,
     navTextImg: NavTextView2,
     numberImg: View2Number,
   },
@@ -39,6 +44,7 @@ const carouselItems = [
     title: "Cảm nhận",
     img: View3,
     bgImg: BgView3,
+    bigTitleImg: View3BigTitle,
     navTextImg: NavTextView3,
     numberImg: View3Number,
   },
@@ -210,13 +216,12 @@ const Header = () => {
                       isActive ? "scale-100" : "scale-0"
                     } h-[100px] min-w-[130px] object-contain w-auto origin-bottom-left`}
                   />
-                  <p
-                    className={`text-[100px] font-black flex-shrink-0 origin-bottom-left ${
-                      isActive ? "scale-100" : "scale-0"
-                    }`}
-                  >
-                    {item.title}
-                  </p>
+                  <img
+                    className={isActive ? "scale-100" : "scale-0"}
+                    src={item.bigTitleImg}
+                    height={86}
+                    alt=""
+                  />
                 </div>
               );
             })}

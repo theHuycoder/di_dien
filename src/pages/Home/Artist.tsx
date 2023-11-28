@@ -10,21 +10,21 @@ const artists = [
     title: "Nghệ sĩ hàng đầu quốc tế",
     img: ArtistImg,
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dol magna aliqua. Ut enim ad minim veniam",
+      "Dị Diện hướng đến việc diễn giải sự hiện diện rộng rãi của công nghệ mới đang tác động đến mối quan hệ giữa người và người với thế giới xung quanh.",
   },
   {
     name: "Ryoji Ikeda",
     title: "Nghệ sĩ hàng đầu quốc tế",
     img: ArtistImg,
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dol magna aliqua. Ut enim ad minim veniam",
+      "Dị Diện hướng đến việc diễn giải sự hiện diện rộng rãi của công nghệ mới đang tác động đến mối quan hệ giữa người và người với thế giới xung quanh.",
   },
   {
     name: "Ryoji Ikeda",
     title: "Nghệ sĩ hàng đầu quốc tế",
     img: ArtistImg,
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dol magna aliqua. Ut enim ad minim veniam",
+      "Dị Diện hướng đến việc diễn giải sự hiện diện rộng rãi của công nghệ mới đang tác động đến mối quan hệ giữa người và người với thế giới xung quanh.",
   },
 ];
 
