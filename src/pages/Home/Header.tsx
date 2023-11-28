@@ -64,9 +64,6 @@ const Header = () => {
       WheelGesturesPlugin({
         target: document.body,
       }),
-      Autoplay({
-        delay: 6000,
-      }),
     ],
   );
 
@@ -100,9 +97,6 @@ const Header = () => {
           [
             WheelGesturesPlugin({
               target: document.body,
-            }),
-            Autoplay({
-              delay: 6000,
             }),
           ],
         );
