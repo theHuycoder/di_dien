@@ -18,7 +18,6 @@ import View1BigTitle from "/home/view-1-big-title.svg";
 import View2BigTitle from "/home/view-2-big-title.svg";
 import View3BigTitle from "/home/view-3-big-title.svg";
 import { useEffect, useState } from "react";
-import MyThreeJSComponent from "@/pages/Home/Cubes.tsx";
 
 const carouselItems = [
   {
