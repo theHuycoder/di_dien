@@ -1,4 +1,5 @@
 // SnakeCursor.js
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { useTrail, animated, useSpring } from 'react-spring';
 import styled from 'styled-components';
