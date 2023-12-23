@@ -7,6 +7,7 @@ import Artist from "@/pages/Home/Artist.tsx";
 import styles from "./Home.module.css";
 import Footer from "@/pages/Home/Footer.tsx";
 import Contact from "@/pages/Home/Contact.tsx";
+import MyThreeJSComponent from "@/pages/Home/Cubes.tsx";
 
 const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,7 +28,10 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="relative">
+      <div className="h-screen absolute top-0 left-0 right-0">
+        <MyThreeJSComponent/>
+      </div>
       <nav
         className={`border-b-neutral-500 border-b fixed top-0 left-0 right-0 ${
           isScrolled ? "bg-black z-50" : "bg-transparent"
@@ -55,7 +59,7 @@ const Home = () => {
       <footer>
         <Footer />
       </footer>
-    </>
+    </div>
   );
 };
 
