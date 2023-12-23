@@ -18,18 +18,18 @@ const MyThreeJSComponent = () => {
   const mouse = { x: 0, y: 0 };
   const camPos = { x: 0, y: 0, z: 10 };
   
-  const cols = 16;
-  const rows = 8;
+  const cols = 20;
+  const rows = 10;
   const gap = 30;
   const size = {
     width: 100,
     height: 30,
     depth: 150,
   };
-  const planeOffset = 400;
+  const planeOffset = 500;
   
-  const speedNormal = 2;
-  const speedFast = 20;
+  const speedNormal = 1.5;
+  const speedFast = 10;
   let speed = speedNormal;
   
   const boxes = {

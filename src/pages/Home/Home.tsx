@@ -8,6 +8,7 @@ import styles from "./Home.module.css";
 import Footer from "@/pages/Home/Footer.tsx";
 import Contact from "@/pages/Home/Contact.tsx";
 import MyThreeJSComponent from "@/pages/Home/Cubes.tsx";
+import SnakeCursor from "@/components/SnakeCursor";
 
 const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,6 +30,7 @@ const Home = () => {
 
   return (
     <div className="relative">
+      <SnakeCursor/>
       <div className="h-screen absolute top-0 left-0 right-0">
         <MyThreeJSComponent/>
       </div>
