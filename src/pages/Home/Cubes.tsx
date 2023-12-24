@@ -28,8 +28,8 @@ const MyThreeJSComponent = () => {
   };
   const planeOffset = 150;
   
-  const speedNormal = 0.5;
-  const speedFast = 1;
+  const speedNormal = 0.2;
+  const speedFast = 0.8;
   let speed = speedNormal;
   
   const boxes = {
