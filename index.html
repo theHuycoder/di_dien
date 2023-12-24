@@ -1,13 +1,341 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,500;1,100;1,200;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+      body{
+          min-height: 100vh;
+      }
+
+      .frame {
+         padding: 100px;
+          position: fixed;
+          inset: 0;
+          z-index: 1000;
+      }
+
+      .inside-frame {
+          border: 5px rgba(131, 74, 221, 0.4) solid;
+          position: relative;
+          box-shadow:
+                  0 0 7px rgba(131, 74, 221, 0.1),
+                  0 0 10px rgba(131, 74, 221, 0.1),
+                  0 0 21px rgba(131, 74, 221, 0.1),
+                  0 0 42px rgba(131, 74, 221, 0.1),
+                  0 0 82px rgba(131, 74, 221, 0.1),
+                  0 0 92px rgba(131, 74, 221, 0.1),
+                  0 0 102px rgba(131, 74, 221, 0.1),
+                  0 0 151px rgba(131, 74, 221, 0.1);
+
+      }
+
+      .action-btn {
+          position: absolute;
+          bottom: 50px;
+          right: 50px;
+          z-index: 100;
+          padding: 1rem 3rem;
+      }
+
+      .custom-btn {
+          color: #fff;
+          width: 300px;
+          height: 60px;
+          padding: 30px 60px;
+          font-family: 'Roboto Mono', monospace;
+          font-size: 1.5rem;
+          font-weight: 500;
+          background: transparent;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: inline-block;
+      }
+
+      .btn-6 {
+          background: #834ADD;
+          line-height: 40px;
+          padding: 0;
+          border: none;
+          box-shadow: 0 0 5px #834ADD;
+      }
+      .btn-6 span {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          horiz-align: center;
+          text-shadow:
+                  0 0 7px #834ADD,
+                  0 0 10px #834ADD,
+                  0 0 21px #834ADD,
+                  0 0 42px #834ADD,
+                  0 0 82px #834ADD,
+                  0 0 92px #834ADD,
+                  0 0 102px #834ADD,
+                  0 0 151px #834ADD;
+
+      }
+
+      .btn-6:hover span {
+          color: #FFF; /* Màu chữ tím */
+          text-shadow:
+                  0 0 7px #834ADD,
+                  0 0 10px #834ADD,
+                  0 0 21px #834ADD,
+                  0 0 42px #834ADD,
+                  0 0 82px #834ADD,
+                  0 0 92px #834ADD,
+                  0 0 102px #834ADD,
+                  0 0 151px #834ADD;
+      }
+      .btn-6:hover{
+          background: transparent;
+      }
+      .btn-6:before,
+      .btn-6:after {
+          position: absolute;
+          content: "";
+          height: 0%;
+          width: 2px;
+          background: #834ADD;
+          box-shadow: 0 0 5px #834ADD;
+      }
+      .btn-6:before {
+          right: 0;
+          top: 0;
+          transition: all 500ms ease;
+      }
+      .btn-6:after {
+          left: 0;
+          bottom: 0;
+          transition: all 500ms ease;
+      }
+      .btn-6:hover:before {
+          transition: all 500ms ease;
+          height: 100%;
+      }
+      .btn-6:hover:after {
+          transition: all 500ms ease;
+          height: 100%;
+      }
+      .btn-6 span:before,
+      .btn-6 span:after {
+          position: absolute;
+          content: "";
+          background: #834ADD;
+          box-shadow: 0 0 5px #834ADD;
+      }
+      .btn-6 span:before {
+          left: 0;
+          top: 0;
+          width: 0%;
+          height: 2px;
+          transition: all 500ms ease;
+      }
+      .btn-6 span:after {
+          right: 0;
+          bottom: 0;
+          width: 0%;
+          height: 2px;
+          transition: all 500ms ease;
+      }
+      .btn-6 span:hover:before {
+          width: 100%;
+      }
+      .btn-6 span:hover:after {
+          width: 100%;
+      }
+
+
+      @keyframes glitch{
+          2%,64%{
+              transform: translate(2px,0) skew(0deg);
+          }
+          4%,60%{
+              transform: translate(-2px,0) skew(0deg);
+          }
+          62%{
+              transform: translate(0,0) skew(5deg);
+          }
+      }
+
+      .glitch:before,
+      .glitch:after{
+          content: attr(title);
+          position: absolute;
+          left: 0;
+      }
+
+      .glitch:before{
+          animation: glitchTop 1s linear infinite;
+          clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+          -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+      }
+
+      @keyframes glitchTop{
+          2%,64%{
+              transform: translate(2px,-2px);
+          }
+          4%,60%{
+              transform: translate(-2px,2px);
+          }
+          62%{
+              transform: translate(13px,-1px) skew(-13deg);
+          }
+      }
+
+      .glitch:after{
+          animation: glitchBotom 1.5s linear infinite;
+          clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+          -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+      }
+
+      @keyframes glitchBotom{
+          2%,64%{
+              transform: translate(-2px,0);
+          }
+          4%,60%{
+              transform: translate(-2px,0);
+          }
+          62%{
+              transform: translate(-22px,5px) skew(21deg);
+          }
+      }
+
+      .glitch{
+          animation: glitch 1s linear infinite;
+      }
+
+    </style>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="duration-500" id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <div id="frame" class="frame">
+        <div id="insideFrame" class="inside-frame duration-100">
+          <canvas id='oldSkool' class="duration-1000"></canvas>
+          <button id="button" onclick="onBtnClick()" class="action-btn custom-btn btn-6 glitch duration-300">
+            <span>Khám phá ngay</span>
+          </button>
+      </div>
+    </div>
+    <script>
+        Trong thời gian 30 năm ngắn ngủi,
+
+        sự cải tiến của công nghệ và công cuộc chuyển đổi số đã không ít lần khiến chúng ta kinh ngạc
+
+        và đồng thời cũng gợi ra nhiều mối lo âu.
+
+        Nếu những bảo bối trong truyện có thể đem lại rắc rối cho Doraemon và những người bạn
+
+        thì công nghệ và không gian số đã tác động như thế nào tới đời sống văn hoá của xã hội thế kỷ 21?
+
+
+        Hãy sẵn sàng khám phá cuộc hành trình ấy cùng triển lãm
+
+                    ____    ___     ____    ___   _____   _   _
+                    |  _ \  |_ _|   |  _ \  |_ _| | ____| | \ | |
+                    | | | |  | |    | | | |  | |  |  _|   |  \| |
+                    | |_| |  | |    | |_| |  | |  | |___  | |\  |
+                    |____/  |___|   |____/  |___| |_____| |_| \_|
+    </script>
+
+    <script>
+        var db = document.body;
+        var c = document.getElementById('oldSkool');
+        var $ = c.getContext('2d');
+        const rootContainer = db.querySelector('#root');
+        const frameContainer = db.querySelector('#frame');
+        rootContainer.classList.add('opacity-0');
+        const button = db.querySelector('#button')
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+        var resume;
+        var speed = 0.5; // Tốc độ, bạn có thể điều chỉnh giá trị này để tăng hoặc giảm tốc độ
+        var frameInterval;
+        var applyGlitch = false; // Biến kiểm soát việc áp dụng hiệu ứng glitch
+
+        function relay() {
+            frameInterval = window.requestAnimationFrame(relay);
+            resume();
+        }
+
+        _s = db.querySelectorAll("script")[1].innerHTML.split("\n");
+        const insideFrame = db.querySelector('#insideFrame');
+        x = 0;
+        y = 1;
+        c.width = w = insideFrame.getBoundingClientRect().width - 10;
+        c.height = h = _s.length * 50;
+        db.style.margin = 'auto';
+        db.style.background = "hsla(0,0%,0%,1)";
+        db.style.overflow = "hidden";
+        $.textBaseline = "top";
+        $.font = "1.3em monospace";
+
+        function applyGlitchEffect(text, xPos, yPos) {
+            var offsetY = Math.random() * 10 - 1;
+            $.shadowColor = "hsla(263, 68%, 58%, 0.8)";
+            $.shadowBlur = 5;
+            $.fillStyle = "hsla(0, 0%, 100%, 0.9)";
+            $.fillText(text, xPos, yPos + offsetY);
+        }
+
+        resume = function () {
+            $.globalCompositeOperation = "source-over";
+            $.shadowBlur = 0; $.fillStyle = "hsla(0,0%,0%,0.4)";
+            $.fillRect(0, 0, w, h);
+            $.shadowColor = "hsla(260, 91%, 87%,0.5)";
+            $.shadowBlur = 9; $.fillStyle = "hsl(266, 71%, 69%)";
+            $.globalCompositeOperation = "lighter";
+
+            _s.forEach(function (t, i) {
+                if (i <= y) {
+                    if (i === y) { t = t.substr(0, x); }
+                    if (applyGlitch) {
+                        applyGlitchEffect(t, 100, 100 + i * 16);
+                    } else {
+                        $.fillText(t, 100, 100 + i * 16);
+                    }
+                }
+            });
+
+            $.fillStyle = "hsl(263, 68%, 58%)";
+            $.fillRect(100 + $.measureText(_s[y]?.substr(0, x)).width, 102 + y * 16, y >= _s.length - 1.5 ? 0 : 10, y >= _s.length - 1 ? 0 : 14);
+
+            x++;
+            if (x >= _s[y]?.length) { y++; x = 0; }
+            if (y * 16 > innerHeight - 200) { $.translate(0, -0.5); }
+            if (y >= _s.length - 1) {
+                $.fillRect(100 + $.measureText(_s[y]?.substr(0, x)).width, 102 + y * 16, 0, 0)
+            }
+        }
+
+        relay();
+
+        function onBtnClick() {
+            applyGlitch = true; // Bật hiệu ứng glitch
+            insideFrame.classList.add('border-0')
+            insideFrame.classList.add('shadow-none')
+            button.classList.add('opacity-0')
+            c.classList.add('opacity-0')
+
+            setTimeout(() => {
+                frameContainer.classList.add('opacity-0')
+                rootContainer.classList.remove('opacity-0')
+                window.cancelAnimationFrame(frameInterval);
+                frameContainer.remove()
+            }, 800);
+        }
+
+    </script>
   </body>
 </html>

@@ -22,14 +22,14 @@ const MyThreeJSComponent = () => {
   const rows = 10;
   const gap = 30;
   const size = {
-    width: 100,
-    height: 30,
-    depth: 150,
+    width: 50,
+    height: 10,
+    depth: 30,
   };
-  const planeOffset = 500;
+  const planeOffset = 150;
   
   const speedNormal = 1.5;
-  const speedFast = 10;
+  const speedFast = 3;
   let speed = speedNormal;
   
   const boxes = {
@@ -48,9 +48,9 @@ const MyThreeJSComponent = () => {
         b: num(0.7, 0.9),
       },
       fast: {
-        r: num(0.8, 0.9),
-        g: num(0.1, 0.2),
-        b: num(0.8, 0.9),
+        r: num(0.5, 0.8),
+        g: num(0.0, 0.2),
+        b: num(0.7, 0.9),
       },
     };
     
