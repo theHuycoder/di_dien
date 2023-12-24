@@ -228,8 +228,10 @@
           </button>
       </div>
     </div>
+
     <script>
-        Trong thời gian 30 năm ngắn ngủi,
+        const content = `
+            Trong thời gian 30 năm ngắn ngủi,
 
         sự cải tiến của công nghệ và công cuộc chuyển đổi số đã không ít lần khiến chúng ta kinh ngạc
 
@@ -243,13 +245,12 @@
         Hãy sẵn sàng khám phá cuộc hành trình ấy cùng triển lãm
 
                     ____    ___     ____    ___   _____   _   _
-                    |  _ \  |_ _|   |  _ \  |_ _| | ____| | \ | |
-                    | | | |  | |    | | | |  | |  |  _|   |  \| |
-                    | |_| |  | |    | |_| |  | |  | |___  | |\  |
-                    |____/  |___|   |____/  |___| |_____| |_| \_|
-    </script>
+                    |  _ \\  |_ _|   |  _ \\  |_ _| | ____| | \\ | |
+                    | | | |  | |    | | | |  | |  |  _|   |  \\| |
+                    | |_| |  | |    | |_| |  | |  | |___  | |\\  |
+                    |____/  |___|   |____/  |___| |_____| |_| \\_|
+        `
 
-    <script>
         var db = document.body;
         var c = document.getElementById('oldSkool');
         var $ = c.getContext('2d');
@@ -269,7 +270,7 @@
             resume();
         }
 
-        _s = db.querySelectorAll("script")[1].innerHTML.split("\n");
+        _s = content.split("\n");
         const insideFrame = db.querySelector('#insideFrame');
         x = 0;
         y = 1;
