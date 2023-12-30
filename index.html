@@ -17,6 +17,7 @@
       }
 
       .inside-frame {
+          transform-origin: center;
           border: 5px rgba(131, 74, 221, 0.4) solid;
           position: relative;
           box-shadow:
@@ -211,6 +212,59 @@
           animation: glitch 1s linear infinite;
       }
 
+      .frame-bar{
+          width: 100%;
+          height: 75px;
+          background: #834ADD;
+          display: flex;
+          justify-content: space-between;
+          padding-left: 12px;
+          align-items: center;
+          box-shadow:
+                  0 0 7px rgba(131, 74, 221, 0.1),
+                  0 0 10px rgba(131, 74, 221, 0.1),
+                  0 0 21px rgba(131, 74, 221, 0.1),
+                  0 0 42px rgba(131, 74, 221, 0.1),
+                  0 0 82px rgba(131, 74, 221, 0.1),
+                  0 0 92px rgba(131, 74, 221, 0.1),
+                  0 0 102px rgba(131, 74, 221, 0.1),
+                  0 0 151px rgba(131, 74, 221, 0.1);
+      }
+
+      .frame-bar-btn{
+          background: #000;
+          width: 50px;
+          height: 50px;
+
+      }
+
+      .fade-in {
+          animation: fade-in 2s ease-out forwards;
+      }
+
+      @keyframes fade-in {
+          0% {
+              opacity: 0;
+          }
+          100% {
+              opacity: 1;
+          }
+      }
+
+      @keyframes reduce-height-animation {
+          from {
+              height: 100%;
+          }
+          to {
+              height: 0;
+          }
+      }
+
+      .reduce-height-animation {
+          animation: reduce-height-animation 2s ease-out forwards;
+      }
+
+
     </style>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -218,10 +272,13 @@
     <title>Vite + React + TS</title>
   </head>
   <body>
-    <div class="duration-500" id="root"></div>
+    <div class="" id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <div id="frame" class="frame">
         <div id="insideFrame" class="inside-frame duration-100">
+          <div class="frame-bar">
+            <div class="frame-bar-btn"></div>
+          </div>
           <canvas id='oldSkool' class="duration-1000"></canvas>
           <button id="button" onclick="onBtnClick()" class="action-btn custom-btn btn-6 glitch duration-300">
             <span>Khám phá ngay</span>
@@ -230,6 +287,9 @@
     </div>
 
     <script>
+        document.onload = ()=>{
+            document.documentElement.scrollTo(0,0)
+        }
         const content = `
         Trong thời gian 30 năm ngắn ngủi,
 
@@ -251,11 +311,13 @@
         `
 
         var db = document.body;
+        db.style.overflow = 'hidden'
+        document.documentElement.style.overflow = 'hidden'
         var c = document.getElementById('oldSkool');
         var $ = c.getContext('2d');
         const rootContainer = db.querySelector('#root');
         const frameContainer = db.querySelector('#frame');
-        rootContainer.classList.add('opacity-0');
+        rootContainer.style.opacity = 0
         const button = db.querySelector('#button')
         c.width = window.innerWidth;
         c.height = window.innerHeight;
@@ -274,7 +336,7 @@
         x = 0;
         y = 1;
         c.width = w = insideFrame.getBoundingClientRect().width - 10;
-        c.height = h = 800;
+        c.height = h = 700;
         db.style.margin = 'auto';
         db.style.background = "hsla(0,0%,0%,1)";
         db.style.overflow = "hidden";
@@ -325,15 +387,22 @@
             applyGlitch = true; // Bật hiệu ứng glitch
             insideFrame.classList.add('border-0')
             insideFrame.classList.add('shadow-none')
+            const framebar = db.querySelector('.frame-bar')
+            framebar.classList.add('opacity-0')
             button.classList.add('opacity-0')
             c.classList.add('opacity-0')
 
             setTimeout(() => {
-                frameContainer.classList.add('opacity-0')
-                rootContainer.classList.remove('opacity-0')
-                window.cancelAnimationFrame(frameInterval);
-                frameContainer.remove()
-            }, 800);
+                setTimeout(()=>{
+                    frameContainer.classList.add('opacity-0')
+                    rootContainer.classList.remove('opacity-0')
+                    rootContainer.classList.add('fade-in')
+                    window.cancelAnimationFrame(frameInterval);
+                    frameContainer.remove()
+                    db.style.overflowY = 'auto'
+                    document.documentElement.style.overflowY = 'auto'
+                },300)
+            }, 700);
         }
 
     </script>

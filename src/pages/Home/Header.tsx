@@ -2,7 +2,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import styles from "./Header.module.css";
 import { ArrowForwardIcon } from "@/components/Icon";
-import View1 from "/home/view-1.png";
+import View1 from "/home/brain-1.gif";
 import View2 from "/home/view-2.png";
 import View3 from "/home/view-3.png";
 import BgView1 from "/home/bg-view-1.png";

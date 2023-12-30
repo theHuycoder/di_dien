@@ -8,7 +8,7 @@ import styles from "./Home.module.css";
 import Footer from "@/pages/Home/Footer.tsx";
 import Contact from "@/pages/Home/Contact.tsx";
 import MyThreeJSComponent from "@/pages/Home/Cubes.tsx";
-import SnakeCursor from "@/components/SnakeCursor";
+import ScrolledButton from "@/components/ScrolledButton";
 
 const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,7 +30,6 @@ const Home = () => {
 
   return (
     <div className="relative">
-      <SnakeCursor/>
       <div className="h-screen absolute top-0 left-0 right-0">
         <MyThreeJSComponent/>
       </div>
@@ -46,10 +45,10 @@ const Home = () => {
       <header className="min-h-screen border-b border-neutral-500">
         <Header />
       </header>
-      <section className="pt-[76px] mb-[156px]">
+      <section className={`pt-[76px] mb-[156px] ${styles.intro}`}>
         <Intro />
       </section>
-      <section className="mb-[100px]">
+      <section className="mb-[100px] mt-[-500px]">
         <Arts />
       </section>
       <section className="relative mb-[100px]">
@@ -61,6 +60,9 @@ const Home = () => {
       <footer>
         <Footer />
       </footer>
+      <div className="fixed bottom-[3rem] right-[3rem]">
+        <ScrolledButton/>
+      </div>
     </div>
   );
 };

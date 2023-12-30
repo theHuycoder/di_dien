@@ -1,3 +1,8 @@
+.intro {
+  background: linear-gradient(0deg, #000 0%, #6C38CA 43.75%, #6E3BCB 68.92%, #000 100%);
+  height: 1257px;
+}
+
 .contact {
   background: url("../../assets/contact-pg.png") no-repeat center/cover;
   height: 555px;
