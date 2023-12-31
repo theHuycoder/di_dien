@@ -69,6 +69,7 @@ const Arts = () => {
     
     return () => {
       ctx.revert()
+      ctx.kill()
     }
   })
   

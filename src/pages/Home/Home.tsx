@@ -45,9 +45,7 @@ const Home = () => {
       <header className="min-h-screen border-b border-neutral-500">
         <Header />
       </header>
-      <section className={`pt-[76px] mb-[156px] ${styles.intro}`}>
         <Intro />
-      </section>
       <section className="mb-[100px] mt-[-500px]">
         <Arts />
       </section>
