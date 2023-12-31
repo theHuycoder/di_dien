@@ -27,33 +27,41 @@ const Arts = () => {
   const component = useRef<HTMLDivElement>(null);
   const slider = useRef<HTMLDivElement>(null);
   const [shouldStart, setShouldStart] = useState(false);
+  const galleryRef = useRef(null);
+  
+  const onScroll = () => {
+    if(!galleryRef.current) return;
+    
+    const isGalleryRefInViewport = galleryRef.current.getBoundingClientRect().top < window.innerHeight;
+    setShouldStart(isGalleryRefInViewport);
+  }
   
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const panels = gsap.utils.toArray(".embla__slide");
       
-      gsap.to(panels, {
+      const tl = gsap.timeline({})
+      
+      
+      tl.to(galleryRef.current, {
+        ease: "none",
+        scrollTrigger: {
+          trigger: galleryRef.current,
+          pin: true,
+          scrub: 1,
+          start: "-=300",
+          end: "+=300",
+        },
+      }).to(panels, {
         x: () => (slider.current?.offsetWidth || 0) * -1,
         ease: "none",
         scrollTrigger: {
-          trigger: component.current,
+          trigger: slider.current,
           pin: true,
           scrub: 1,
           snap: 1 / (panels.length - 1),
           start: "-=300",
           end: () => "+=" + ((slider.current?.offsetWidth || 0)),
-          onUpdate: () => {
-            const lastPanel = panels[panels.length - 1];
-            const lastPanelBounds = lastPanel.getBoundingClientRect();
-            const componentBounds = component.current.getBoundingClientRect();
-            
-            if (
-              lastPanelBounds.left >= componentBounds.left  &&
-              lastPanelBounds.right <= componentBounds.right + 1500
-            ) {
-              setShouldStart(true)
-            }
-          },
         }
       })
       
@@ -66,33 +74,35 @@ const Arts = () => {
   
   
   useEffect(()=>{
+    let tX;
+    let tY;
     if(!shouldStart) return;
     
-    var radius = 480; // how big of the radius
-    var autoRotate = true; // auto rotate or not
-    var rotateSpeed = -60; // unit: seconds/360 degrees
-    var imgWidth = 280; // width of images (unit: px)
-    var imgHeight = 360; // height of images (unit: px)
+    const radius = 480; // how big of the radius
+    const autoRotate = true; // auto rotate or not
+    const rotateSpeed = -60; // unit: seconds/360 degrees
+    const imgWidth = 280; // width of images (unit: px)
+    const imgHeight = 360; // height of images (unit: px)
 
-    setTimeout(init, 100);
+    setTimeout(init, 1000);
     
-    var odrag = document.getElementById('drag-container');
-    var ospin = document.getElementById('spin-container');
-    var aImg = ospin.getElementsByTagName('img');
-    var aVid = ospin.getElementsByTagName('video');
-    var aEle = [...aImg, ...aVid]; // combine 2 arrays
+    const odrag = document.getElementById('drag-container');
+    const ospin = document.getElementById('spin-container');
+    const aImg = ospin.getElementsByTagName('img');
+    const aVid = ospin.getElementsByTagName('video');
+    const aEle = [...aImg, ...aVid]; // combine 2 arrays
 
 // Size of images
     ospin.style.width = imgWidth + "px";
     ospin.style.height = imgHeight + "px";
 
 // Size of ground - depend on radius
-    var ground = document.getElementById('ground');
+    const ground = document.getElementById('ground');
     ground.style.width = radius * 3 + "px";
     ground.style.height = radius * 3 + "px";
     
     function init(delayTime) {
-      for (var i = 0; i < aEle.length; i++) {
+      for (let i = 0; i < aEle.length; i++) {
         aEle[i].style.transform = "rotateY(" + (i * (360 / aEle.length)) + "deg) translateZ(" + radius + "px)";
         aEle[i].style.transition = "transform 1s";
         aEle[i].style.transitionDelay = delayTime || (aEle.length - i) / 4 + "s";
@@ -112,14 +122,14 @@ const Arts = () => {
       ospin.style.animationPlayState = (yes?'running':'paused');
     }
     
-    var sX, sY, nX, nY, desX = 0,
-      desY = 0,
-      tX = 0,
-      tY = 10;
+    let desX = 0;
+    let desY = 0;
+    tX = 0;
+    tY = 10;
 
 // auto spin
     if (autoRotate) {
-      var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
+      const animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
       ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
     }
 
@@ -166,79 +176,88 @@ const Arts = () => {
     
   },[shouldStart])
   
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    }
+  }, []);
+  
   return (
     <div ref={component}>
-      <div className="flex items-center justify-between container mx-auto mb-[120px]">
-        <Title>Các tác phẩm</Title>
+      
+      <div className="flex items-center justify-between container mx-auto mb-[200px] text-center">
+        <Title className="w-full text-center">Các tác phẩm</Title>
       </div>
-      <div className="embla mx-auto w-[1640px]">
-        <div className="embla__viewport">
-          <div ref={slider} className="embla__container flex items-center gap-[62px]">
-            <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
-              <img src={ArtNumb1} alt="" height={320}/>
-              <img src={Art1} alt=""/>
+      <div ref={galleryRef} className="container mx-auto text-center mt-[100px] mb-[300px]">
+        <div className="mx-auto relative w-fit flex-shrink-0">
+          <div id="drag-container">
+            <div id="spin-container">
+              <img
+                src={BrainGif}
+                alt=""/>
+              <img
+                src={Art1}
+                alt=""/>
+              <img
+                src={Art2}
+                alt=""/>
+              <img
+                src={Art3}
+                alt=""/>
+              <img
+                src={Art4}
+                alt=""/>
+              <img
+                src={Art5}
+                alt=""/>
+              <img
+                src={Art6}
+                alt=""/>
+              
+              <img
+                src={BrainGif}
+                alt=""/>
+              
             </div>
-            <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
-              <img src={Art2} alt=""/>
-              <img src={ArtNumb2} alt="" height={68}/>
-            </div>
-            <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
-              <img src={ArtNumb3} alt="" height={68}/>
-              <img src={Art3} alt=""/>
-            </div>
-            <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
-              <img src={Art4} alt=""/>
-              <img src={ArtNumb4} alt="" height={68}/>
-            </div>
-            <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
-              <img src={ArtNumb5} alt=""/>
-              <img src={Art5} alt="" height={302}/>
-            </div>
-            <div className="embla__slide w-fit flex flex-col gap-[20px] items-end flex-shrink-0">
-              <img src={Art6} alt="" height={320}/>
-              <img src={ArtNumb6} alt=""/>
-            </div>
-            <div className="embla__slide relative w-fit ml-[400px] flex-shrink-0">
-              <div id="drag-container">
-                <div id="spin-container">
-                  <img
-                    src={Art1}
-                    alt=""/>
-                  <img
-                    src={Art2}
-                    alt=""/>
-                  <img
-                    src={Art3}
-                    alt=""/>
-                  <img
-                    src={Art4}
-                    alt=""/>
-                  <img
-                    src={Art5}
-                    alt=""/>
-                  <img
-                    src={Art6}
-                    alt=""/>
-                  
-                  <a target="_blank" href="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg">
-                    <img
-                      src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                      alt=""/>
-                  </a>
-                  <a target="_blank" href="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg">
-                    <img
-                      src={BrainGif}
-                      alt=""/>
-                  </a>
-                  
-                  <a className="text-3xl relative bottom-[100px] right-[150px] w-[600px] text-center flex-shrink-0"
-                     target="_blank" href="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg">
-                    ...Và rất nhiều các tác phẩm nghệ thuật <br/>
-                    khác chờ bạn khám phá
-                  </a>
-                
-                </div>
-                <div id="ground"></div>
+            <div id="ground"></div>
+          </div>
+        </div>
+      </div>
+      
+      <p className="w-full text-center my-[100px]">
+        ...Và rất nhiều các tác phẩm nghệ thuật <br/>
+        khác chờ bạn khám phá
+      </p>
+      
+      <div >
+        <div className="embla mx-auto w-[1640px]">
+          <div className="embla__viewport">
+            <div ref={slider} className="embla__container flex items-center gap-[62px]">
+              <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
+                <img src={ArtNumb1} alt="" height={320}/>
+                <img src={Art1} alt=""/>
+              </div>
+              <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
+                <img src={Art2} alt=""/>
+                <img src={ArtNumb2} alt="" height={68}/>
+              </div>
+              <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
+                <img src={ArtNumb3} alt="" height={68}/>
+                <img src={Art3} alt=""/>
+              </div>
+              <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
+                <img src={Art4} alt=""/>
+                <img src={ArtNumb4} alt="" height={68}/>
+              </div>
+              <div className="embla__slide w-fit flex flex-col gap-[12px] items-end flex-shrink-0">
+                <img src={ArtNumb5} alt=""/>
+                <img src={Art5} alt="" height={302}/>
+              </div>
+              <div className="embla__slide w-fit flex flex-col gap-[20px] items-end flex-shrink-0">
+                <img src={Art6} alt="" height={320}/>
+                <img src={ArtNumb6} alt=""/>
               </div>
             </div>
           </div>
