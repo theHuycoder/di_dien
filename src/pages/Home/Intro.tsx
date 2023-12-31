@@ -2,7 +2,7 @@ import { Title } from "@/components/Title";
 import { StarIcon } from "@/components/Icon";
 import TVC from "/home/tvc.mp4";
 import gsap from "gsap";
-import {useLayoutEffect, useRef} from "react";
+import {useRef, useEffect} from "react";
 
 let timeout: NodeJS.Timeout | null = null;
 
@@ -10,7 +10,7 @@ const Intro = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   
-  useLayoutEffect(()=> {
+  useEffect(()=> {
     const ctx = gsap.context(()=>{
       const tl = gsap
       .timeline({defaults: {ease: "none"}})

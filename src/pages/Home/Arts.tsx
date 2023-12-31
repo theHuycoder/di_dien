@@ -15,7 +15,7 @@ import ArtNumb5 from "/home/art-num-5.svg";
 import ArtNumb6 from "/home/art-num-6.svg";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import BrainGif from '/home/brain-1.gif'
-import {useEffect, useLayoutEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import gsap from "gsap";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -36,7 +36,7 @@ const Arts = () => {
     setShouldStart(isGalleryRefInViewport);
   }
   
-  useLayoutEffect(() => {
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const panels = gsap.utils.toArray(".embla__slide");
       
