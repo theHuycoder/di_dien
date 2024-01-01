@@ -9,9 +9,31 @@ import Footer from "@/pages/Home/Footer.tsx";
 import Contact from "@/pages/Home/Contact.tsx";
 import MyThreeJSComponent from "@/pages/Home/Cubes.tsx";
 import ScrolledButton from "@/components/ScrolledButton";
+import ReactModal from "react-modal";
+import TicketForm from "@/pages/Home/TicketForm.tsx";
+
+ReactModal.setAppElement("#root");
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    borderRadius: 0,
+  },
+  overlay: {
+    backgroundColor: "rgba(8, 8, 8, 0.80)",
+  },
+};
 
 const Home = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const onToggleModal = (show: boolean) => setShowModal(show);
 
   useEffect(() => {
     const scrollHandler = () => {
@@ -31,7 +53,7 @@ const Home = () => {
   return (
     <div className="relative">
       <div className="h-screen absolute top-0 left-0 right-0">
-        <MyThreeJSComponent/>
+        <MyThreeJSComponent />
       </div>
       <nav
         className={`border-b-neutral-500 border-b fixed top-0 left-0 right-0 ${
@@ -45,7 +67,7 @@ const Home = () => {
       <header className="min-h-screen border-b border-neutral-500">
         <Header />
       </header>
-        <Intro />
+      <Intro />
       <section className="mb-[100px] mt-[-500px]">
         <Arts />
       </section>
@@ -59,8 +81,16 @@ const Home = () => {
         <Footer />
       </footer>
       <div className="fixed bottom-[3rem] right-[3rem]">
-        <ScrolledButton/>
+        <ScrolledButton click={() => onToggleModal(true)} />
       </div>
+      <ReactModal
+        style={customStyles}
+        shouldCloseOnEsc={true}
+        onRequestClose={() => onToggleModal(false)}
+        isOpen={showModal}
+      >
+        <TicketForm onPay={() => setShowModal(false)} />
+      </ReactModal>
     </div>
   );
 };

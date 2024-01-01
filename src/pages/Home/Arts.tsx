@@ -51,6 +51,9 @@ const Arts = () => {
           scrub: 1,
           start: "-=300",
           end: "+=300",
+          onEnter: ()=> {
+            setShouldStart(true)
+          }
         },
       }).to(panels, {
         x: () => (slider.current?.offsetWidth || 0) * -1,
