@@ -121,7 +121,6 @@ const Header = () => {
 
   return (
     <>
-      
       <div
         style={{
           height: "calc(100vh - 600px)",
@@ -161,16 +160,16 @@ const Header = () => {
         <div className="min-h-[100%] pt-[140px] flex flex-col justify-between">
           <div className="flex items-start justify-between container mx-auto relative">
             <button className="flex items-center flex-shrink-0 gap-[12px]">
-              <ArrowForwardIcon/>
+              <ArrowForwardIcon />
               <p className="text 2xl font-medium">Triển lãm dị diện</p>
             </button>
-            
+
             <div className="flex flex-col gap-[88px]  relative z-50">
               {carouselItems.map((item, idx) => {
                 const index = idx + 1;
-                
+
                 const isActive = activeSlide === idx;
-                
+
                 return (
                   <button
                     onClick={() => onSelect(idx)}
