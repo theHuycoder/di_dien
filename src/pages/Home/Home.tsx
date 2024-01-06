@@ -80,7 +80,7 @@ const Home = () => {
       <footer>
         <Footer />
       </footer>
-      <div className="fixed bottom-[3rem] right-[3rem]">
+      <div className="fixed bottom-[3rem] right-[3rem] z-20">
         <ScrolledButton click={() => onToggleModal(true)} />
       </div>
       <ReactModal
