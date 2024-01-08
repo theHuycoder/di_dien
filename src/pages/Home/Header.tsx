@@ -156,7 +156,7 @@ const Header = () => {
               <p className="text 2xl font-medium">Triển lãm dị diện</p>
             </button>
 
-            <div className="flex flex-col gap-[88px]  relative z-50 pt-[300px]">
+            <div className="flex flex-col gap-[88px]  relative z-50 pt-[100px]">
               {carouselItems.map((item, idx) => {
                 const index = idx + 1;
 
