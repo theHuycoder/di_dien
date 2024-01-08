@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import Header from "@/pages/Home/Header.tsx";
 import Intro from "@/pages/Home/Intro.tsx";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Arts from "@/pages/Home/Arts.tsx";
 import Artist from "@/pages/Home/Artist.tsx";
 import styles from "./Home.module.css";
@@ -11,6 +11,13 @@ import MyThreeJSComponent from "@/pages/Home/Cubes.tsx";
 import ScrolledButton from "@/components/ScrolledButton";
 import ReactModal from "react-modal";
 import TicketForm from "@/pages/Home/TicketForm.tsx";
+import { Title } from "@/components/Title";
+import Logo1 from "/home/logo-1.png";
+import Logo2 from "/home/logo-2.png";
+import Logo3 from "/home/logo-3.png";
+import Logo4 from "/home/logo-4.png";
+import Logo5 from "/home/logo-5.png";
+import Logo6 from "/home/logo-6.png";
 
 ReactModal.setAppElement("#root");
 
@@ -27,6 +34,14 @@ const customStyles = {
   overlay: {
     backgroundColor: "rgba(8, 8, 8, 0.80)",
   },
+};
+
+const Logo = ({ logo }: any) => {
+  return (
+    <div className="flex items-center justify-center py-4 px-8 bg-[#191919] w-[240px] h-[72px]">
+      <img src={logo} alt="" />
+    </div>
+  );
 };
 
 const Home = () => {
@@ -71,11 +86,23 @@ const Home = () => {
       <section className="mb-[100px] mt-[-500px]">
         <Arts />
       </section>
-      <section className="relative mb-[100px]">
+      <section className="relative mb-[50px]">
         <Artist />
       </section>
+      <section className="pb-24">
+        <div className="container mx-auto mb-[32px]">
+          <Title>Đơn vị tài trợ</Title>
+        </div>
+        <div className="container mx-auto flex items-center gap-12 h-[64px]">
+          <Logo logo={Logo1} />
+          <Logo logo={Logo3} />
+          <Logo logo={Logo5} />
+          <Logo logo={Logo4} />
+          <Logo logo={Logo6} />
+        </div>
+      </section>
       <section className={styles.contact}>
-        <Contact />
+        <Contact onClick={() => onToggleModal(true)} />
       </section>
       <footer>
         <Footer />

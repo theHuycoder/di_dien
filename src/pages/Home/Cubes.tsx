@@ -15,9 +15,9 @@ let camera, scene, renderer;
 const mouse = { x: 0, y: 0 };
 const camPos = { x: 0, y: 0, z: 10 };
 
-const cols = 20;
-const rows = 10;
-const gap = 30;
+const cols = 35;
+const rows = 25;
+const gap = 10;
 const size = {
   width: 50,
   height: 10,

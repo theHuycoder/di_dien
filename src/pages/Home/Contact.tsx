@@ -1,23 +1,16 @@
-const Contact = () => {
+const Contact = ({ onClick }: any) => {
   return (
-    <div className="container pt-20">
-      <div className="flex flex-col items-center gap-4">
-        <p className="text-[14px] font-medium text-[#818181]">
-          Bạn thây sự kiện này thú vị ?
-        </p>
-        <h2 className="text-[40px] text-black font-bold leading-[60px] text-center w-[350px]">
-          Liên hệ ngay với đội ngũ chúng tôi!
-        </h2>
-        <div className="flex items-center justify-between rounded-[100px] pl-[16px] pr-[4px] py-[4px] border">
-          <input
-            type="text"
-            className="border-0 outline-0 bg-transparent text-[12px] font-medium leading-[20px] text-black"
-            placeholder="Nhập email tại đây"
-          />
-          <button className="flex items-center p-[16px] rounded-full bg-[#5F6FFC] w-[130px] h-[40px]">
-            Gửi thông tin
-          </button>
-        </div>
+    <div className="container pt-20 text-white relative z-20 h-full">
+      <div className="flex flex-col items-center gap-12 justify-center h-full ">
+        <h6 className="text-6xl font-semibold text-white text-center max-w-[800px] leading-[80px]">
+          Bạn đã sẵn sàng trải nghiệm một thế giới khác
+        </h6>
+        <button
+          onClick={onClick}
+          className="bg-white text-purple-950 text-xl font-bold py-4 px-8 rounded-xl"
+        >
+          Đặt vé ngay
+        </button>
       </div>
     </div>
   );

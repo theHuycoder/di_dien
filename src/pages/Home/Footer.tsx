@@ -59,7 +59,7 @@ const links = [
       {
         title: () => {
           return (
-            <button className="flex w-[100px] h-[24px] items-center bg-[#E2D9FC] rounded-[100px]">
+            <button className="flex justify-center w-[150px] h-[36px] items-center bg-[#E2D9FC] rounded-[100px]">
               👋 Tuyển dụng
             </button>
           );

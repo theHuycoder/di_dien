@@ -53,7 +53,10 @@ const Intro = () => {
   });
 
   return (
-    <div ref={containerRef} className={`${styles.intro}  mb-[800px]`}>
+    <div
+      ref={containerRef}
+      className={`${styles.intro}  mb-[800px] py-[100px]`}
+    >
       <div className="container mx-auto">
         <div className="flex items-start justify-between container mx-auto relative">
           <div>

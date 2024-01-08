@@ -2,12 +2,12 @@ import useEmblaCarousel from "embla-carousel-react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import styles from "./Header.module.css";
 import { ArrowForwardIcon } from "@/components/Icon";
-import View1 from "/home/brain-1.gif";
-import View2 from "/home/view-2.png";
-import View3 from "/home/view-3.png";
-import BgView1 from "/home/bg-view-1.png";
-import BgView2 from "/home/bg-view-2.png";
-import BgView3 from "/home/bg-view-3.png";
+import View2 from "/home/brain-1.gif";
+import View1 from "/home/eye.gif";
+import View3 from "/home/heart.gif";
+// import BgView1 from "/home/bg-view-1.png";
+// import BgView2 from "/home/bg-view-2.png";
+// import BgView3 from "/home/bg-view-3.png";
 import NavTextView1 from "/home/nav-text-view-1.svg";
 import NavTextView2 from "/home/nav-text-view-2.svg";
 import NavTextView3 from "/home/nav-text-view-3.svg";
@@ -24,7 +24,6 @@ const carouselItems = [
     id: "1",
     title: "Góc nhìn",
     img: View1,
-    bgImg: BgView1,
     bigTitleImg: View1BigTitle,
     navTextImg: NavTextView1,
     numberImg: View1Number,
@@ -33,7 +32,6 @@ const carouselItems = [
     id: "2",
     title: "Hình tượng",
     img: View2,
-    bgImg: BgView2,
     bigTitleImg: View2BigTitle,
     navTextImg: NavTextView2,
     numberImg: View2Number,
@@ -42,7 +40,6 @@ const carouselItems = [
     id: "3",
     title: "Cảm nhận",
     img: View3,
-    bgImg: BgView3,
     bigTitleImg: View3BigTitle,
     navTextImg: NavTextView3,
     numberImg: View3Number,
@@ -142,14 +139,9 @@ const Header = () => {
                     className={`${styles.slide} embla__slide relative`}
                   >
                     <img
-                      className="absolute max-w-[759px] top-1/2 left-[50%] right-0 z-10 -translate-x-1/2 -translate-y-1/2"
+                      className="absolute max-w-[600px] top-1/2 left-[50%] right-0 z-10 -translate-x-1/2 -translate-y-1/2"
                       src={item.img}
                       alt={item.title}
-                    />
-                    <img
-                      className="absolute max-w-[759px] top-1/2 left-[50%] right-0 z-0 -translate-x-1/2 -translate-y-1/2"
-                      src={item.bgImg}
-                      alt=""
                     />
                   </div>
                 );
@@ -157,14 +149,14 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="min-h-[100%] pt-[140px] flex flex-col justify-between">
-          <div className="flex items-start justify-between container mx-auto relative">
+        <div className="min-h-[100%] flex flex-col justify-between">
+          <div className="flex items-start justify-between container mx-auto relative mt-[140px]">
             <button className="flex items-center flex-shrink-0 gap-[12px]">
               <ArrowForwardIcon />
               <p className="text 2xl font-medium">Triển lãm dị diện</p>
             </button>
 
-            <div className="flex flex-col gap-[88px]  relative z-50">
+            <div className="flex flex-col gap-[88px]  relative z-50 pt-[300px]">
               {carouselItems.map((item, idx) => {
                 const index = idx + 1;
 
