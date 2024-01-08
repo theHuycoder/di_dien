@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { Logo } from "@/components/Icon";
 import styles from "./Navbar.module.css";
-
+import Logo from "/home/logo.png";
 const Navbar = () => {
   return (
     <div className="flex items-center justify-between py-5">
@@ -12,7 +11,7 @@ const Navbar = () => {
         Vé vào cửa
       </Link>
       <Link to="">
-        <Logo />
+        <img width="80" src={Logo} alt="" />
       </Link>
       <Link className={styles["nav-link"]} to="">
         Cửa hàng
